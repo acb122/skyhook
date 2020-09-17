@@ -1,0 +1,40 @@
+import { Subscriber } from 'rxjs';
+/**
+ * @ignore
+ * This is an RxJS operator to schedule a microtask just after all
+ * the synchronous subscribers have been processed.
+ * It's useful because we use `microTasks !== 0` to determine when we are finished
+ * processing all the listeners and are ready for Angular to perform change detection.
+ */
+export function scheduleMicroTaskAfter(zone, uTask) {
+    return (source) => {
+        return source.lift(new RunInZoneOperator(zone, uTask));
+    };
+}
+/**
+ * @ignore
+ */
+export class ZoneSubscriber extends Subscriber {
+    constructor(destination, zone, uTask = (() => { })) {
+        super(destination);
+        this.zone = zone;
+        this.uTask = uTask;
+    }
+    _next(val) {
+        this.destination.next && this.destination.next(val);
+        this.zone.scheduleMicroTask('ZoneSubscriber', this.uTask);
+    }
+}
+/**
+ * @ignore
+ */
+export class RunInZoneOperator {
+    constructor(zone, uTask) {
+        this.zone = zone;
+        this.uTask = uTask;
+    }
+    call(subscriber, source) {
+        return source.subscribe(new ZoneSubscriber(subscriber, this.zone, this.uTask));
+    }
+}
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoic2NoZWR1bGVNaWNyb1Rhc2tBZnRlci5qcyIsInNvdXJjZVJvb3QiOiIiLCJzb3VyY2VzIjpbIi4uLy4uLy4uLy4uLy4uLy4uLy4uL2xpYnMvY29yZS9zcmMvbGliL2ludGVybmFsL3NjaGVkdWxlTWljcm9UYXNrQWZ0ZXIudHMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUEsT0FBTyxFQUE2QixVQUFVLEVBQVksTUFBTSxNQUFNLENBQUM7QUFHdkU7Ozs7OztHQU1HO0FBRUgsTUFBTSxVQUFVLHNCQUFzQixDQUFJLElBQVUsRUFBRSxLQUFrQjtJQUNwRSxPQUFPLENBQUMsTUFBcUIsRUFBaUIsRUFBRTtRQUM1QyxPQUFPLE1BQU0sQ0FBQyxJQUFJLENBQUMsSUFBSSxpQkFBaUIsQ0FBQyxJQUFJLEVBQUUsS0FBSyxDQUFDLENBQUMsQ0FBQztJQUMzRCxDQUFDLENBQUM7QUFDTixDQUFDO0FBRUQ7O0dBRUc7QUFDSCxNQUFNLE9BQU8sY0FBa0IsU0FBUSxVQUFhO0lBQ2hELFlBQVksV0FBMEIsRUFBVSxJQUFVLEVBQVUsUUFBb0IsQ0FBQyxHQUFHLEVBQUUsR0FBRSxDQUFDLENBQUM7UUFDOUYsS0FBSyxDQUFDLFdBQVcsQ0FBQyxDQUFDO1FBRHlCLFNBQUksR0FBSixJQUFJLENBQU07UUFBVSxVQUFLLEdBQUwsS0FBSyxDQUF5QjtJQUVsRyxDQUFDO0lBQ1MsS0FBSyxDQUFDLEdBQU07UUFDbEIsSUFBSSxDQUFDLFdBQVcsQ0FBQyxJQUFJLElBQUksSUFBSSxDQUFDLFdBQVcsQ0FBQyxJQUFJLENBQUMsR0FBRyxDQUFDLENBQUM7UUFDcEQsSUFBSSxDQUFDLElBQUksQ0FBQyxpQkFBaUIsQ0FBQyxnQkFBZ0IsRUFBRSxJQUFJLENBQUMsS0FBSyxDQUFDLENBQUM7SUFDOUQsQ0FBQztDQUNKO0FBRUQ7O0dBRUc7QUFDSCxNQUFNLE9BQU8saUJBQWlCO0lBQzFCLFlBQW9CLElBQVUsRUFBVSxLQUFrQjtRQUF0QyxTQUFJLEdBQUosSUFBSSxDQUFNO1FBQVUsVUFBSyxHQUFMLEtBQUssQ0FBYTtJQUFJLENBQUM7SUFDL0QsSUFBSSxDQUFDLFVBQXlCLEVBQUUsTUFBVztRQUN2QyxPQUFPLE1BQU0sQ0FBQyxTQUFTLENBQUMsSUFBSSxjQUFjLENBQUMsVUFBVSxFQUFFLElBQUksQ0FBQyxJQUFJLEVBQUUsSUFBSSxDQUFDLEtBQUssQ0FBQyxDQUFDLENBQUM7SUFDbkYsQ0FBQztDQUNKIiwic291cmNlc0NvbnRlbnQiOlsiaW1wb3J0IHsgT2JzZXJ2YWJsZSwgVGVhcmRvd25Mb2dpYywgU3Vic2NyaWJlciwgT3BlcmF0b3IgfSBmcm9tICdyeGpzJztcblxuXG4vKipcbiAqIEBpZ25vcmVcbiAqIFRoaXMgaXMgYW4gUnhKUyBvcGVyYXRvciB0byBzY2hlZHVsZSBhIG1pY3JvdGFzayBqdXN0IGFmdGVyIGFsbFxuICogdGhlIHN5bmNocm9ub3VzIHN1YnNjcmliZXJzIGhhdmUgYmVlbiBwcm9jZXNzZWQuXG4gKiBJdCdzIHVzZWZ1bCBiZWNhdXNlIHdlIHVzZSBgbWljcm9UYXNrcyAhPT0gMGAgdG8gZGV0ZXJtaW5lIHdoZW4gd2UgYXJlIGZpbmlzaGVkXG4gKiBwcm9jZXNzaW5nIGFsbCB0aGUgbGlzdGVuZXJzIGFuZCBhcmUgcmVhZHkgZm9yIEFuZ3VsYXIgdG8gcGVyZm9ybSBjaGFuZ2UgZGV0ZWN0aW9uLlxuICovXG5cbmV4cG9ydCBmdW5jdGlvbiBzY2hlZHVsZU1pY3JvVGFza0FmdGVyPFQ+KHpvbmU6IFpvbmUsIHVUYXNrPzogKCkgPT4gdm9pZCkge1xuICAgIHJldHVybiAoc291cmNlOiBPYnNlcnZhYmxlPFQ+KTogT2JzZXJ2YWJsZTxUPiA9PiB7XG4gICAgICAgIHJldHVybiBzb3VyY2UubGlmdChuZXcgUnVuSW5ab25lT3BlcmF0b3Ioem9uZSwgdVRhc2spKTtcbiAgICB9O1xufVxuXG4vKipcbiAqIEBpZ25vcmVcbiAqL1xuZXhwb3J0IGNsYXNzIFpvbmVTdWJzY3JpYmVyPFQ+IGV4dGVuZHMgU3Vic2NyaWJlcjxUPiB7XG4gICAgY29uc3RydWN0b3IoZGVzdGluYXRpb246IFN1YnNjcmliZXI8VD4sIHByaXZhdGUgem9uZTogWm9uZSwgcHJpdmF0ZSB1VGFzazogKCkgPT4gdm9pZCA9ICgoKSA9PiB7fSkpIHtcbiAgICAgICAgc3VwZXIoZGVzdGluYXRpb24pO1xuICAgIH1cbiAgICBwcm90ZWN0ZWQgX25leHQodmFsOiBUKSB7XG4gICAgICAgIHRoaXMuZGVzdGluYXRpb24ubmV4dCAmJiB0aGlzLmRlc3RpbmF0aW9uLm5leHQodmFsKTtcbiAgICAgICAgdGhpcy56b25lLnNjaGVkdWxlTWljcm9UYXNrKCdab25lU3Vic2NyaWJlcicsIHRoaXMudVRhc2spO1xuICAgIH1cbn1cblxuLyoqXG4gKiBAaWdub3JlXG4gKi9cbmV4cG9ydCBjbGFzcyBSdW5JblpvbmVPcGVyYXRvcjxULCBSPiBpbXBsZW1lbnRzIE9wZXJhdG9yPFQsIFI+IHtcbiAgICBjb25zdHJ1Y3Rvcihwcml2YXRlIHpvbmU6IFpvbmUsIHByaXZhdGUgdVRhc2s/OiAoKSA9PiB2b2lkKSB7IH1cbiAgICBjYWxsKHN1YnNjcmliZXI6IFN1YnNjcmliZXI8Uj4sIHNvdXJjZTogYW55KTogVGVhcmRvd25Mb2dpYyB7XG4gICAgICAgIHJldHVybiBzb3VyY2Uuc3Vic2NyaWJlKG5ldyBab25lU3Vic2NyaWJlcihzdWJzY3JpYmVyLCB0aGlzLnpvbmUsIHRoaXMudVRhc2spKTtcbiAgICB9XG59XG4iXX0=

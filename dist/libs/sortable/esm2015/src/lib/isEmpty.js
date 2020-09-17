@@ -1,0 +1,10 @@
+/** @ignore
+ * Returns isEmpty, whether it's an immutable List or an array
+ */
+export function isEmpty(list) {
+    for (let _ of list) {
+        return false;
+    }
+    return true;
+}
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiaXNFbXB0eS5qcyIsInNvdXJjZVJvb3QiOiIiLCJzb3VyY2VzIjpbIi4uLy4uLy4uLy4uLy4uLy4uL2xpYnMvc29ydGFibGUvc3JjL2xpYi9pc0VtcHR5LnRzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBOztHQUVHO0FBQ0gsTUFBTSxVQUFVLE9BQU8sQ0FBQyxJQUFtQjtJQUN2QyxLQUFLLElBQUksQ0FBQyxJQUFJLElBQUksRUFBRTtRQUNoQixPQUFPLEtBQUssQ0FBQztLQUNoQjtJQUNELE9BQU8sSUFBSSxDQUFDO0FBQ2hCLENBQUMiLCJzb3VyY2VzQ29udGVudCI6WyIvKiogQGlnbm9yZVxuICogUmV0dXJucyBpc0VtcHR5LCB3aGV0aGVyIGl0J3MgYW4gaW1tdXRhYmxlIExpc3Qgb3IgYW4gYXJyYXlcbiAqL1xuZXhwb3J0IGZ1bmN0aW9uIGlzRW1wdHkobGlzdDogSXRlcmFibGU8YW55Pik6IGJvb2xlYW4ge1xuICAgIGZvciAobGV0IF8gb2YgbGlzdCkge1xuICAgICAgICByZXR1cm4gZmFsc2U7XG4gICAgfVxuICAgIHJldHVybiB0cnVlO1xufVxuXG4iXX0=

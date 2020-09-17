@@ -1,0 +1,31 @@
+{
+  "name": "@rednax/multi-backend",
+  "version": "0.0.1",
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": "https://github.com/acb122/-rednax-skyhook",
+  "dependencies": {
+    "tslib": "^1.9.0",
+    "dnd-core": "^11.1.3",
+    "react-dnd-touch-backend": "^11.1.3",
+    "react-dnd-html5-backend": "^11.1.3",
+    "dnd-multi-backend": "^6.0.0"
+  },
+  "peerDependencies": {
+    "@rednax/core": "^0.0.1",
+    "@angular/core": ">= 6.0.0",
+    "rxjs": ">= 6.0.0"
+  },
+  "license": "MIT",
+  "main": "bundles/rednax-multi-backend.umd.js",
+  "module": "fesm2015/rednax-multi-backend.js",
+  "es2015": "fesm2015/rednax-multi-backend.js",
+  "esm2015": "esm2015/rednax-multi-backend.js",
+  "fesm2015": "fesm2015/rednax-multi-backend.js",
+  "typings": "rednax-multi-backend.d.ts",
+  "sideEffects": false,
+  "scripts": {
+    "prepublishOnly": "node --eval \"console.error('ERROR: Trying to publish a package that has been compiled by Ivy. This is not allowed.\\nPlease delete and rebuild the package, without compiling with Ivy, before attempting to publish.\\n')\" && exit 1"
+  }
+}
