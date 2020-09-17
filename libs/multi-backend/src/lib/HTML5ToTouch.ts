@@ -1,25 +1,26 @@
-import { default as HTML5Backend } from "react-dnd-html5-backend";
-import { default as TouchBackend } from "react-dnd-touch-backend";
+import { HTML5Backend } from 'react-dnd-html5-backend';
+import { TouchBackend } from 'react-dnd-touch-backend';
 import {
-    default as MultiBackend,
+    MultiBackend,
     MouseTransition,
     TouchTransition,
-    BackendTransition
-} from "dnd-multi-backend";
+    BackendTransition,
+} from 'dnd-multi-backend';
 import { BackendFactory } from 'dnd-core';
 
 export const HTML5ToTouch = {
     backends: [
         {
             backend: HTML5Backend,
-            transition: MouseTransition
+            transition: MouseTransition,
         },
         {
-            backend: (manager, ctx) => TouchBackend(manager, ctx, { enableMouseEvents: false }),
+            backend: (manager, ctx) =>
+                TouchBackend(manager, ctx, { enableMouseEvents: false }),
             preview: true,
-            transition: TouchTransition
-        }
-    ] as BackendTransition[]
+            transition: TouchTransition,
+        },
+    ] as BackendTransition[],
 };
 
 export function createDefaultMultiBackend(): BackendFactory {

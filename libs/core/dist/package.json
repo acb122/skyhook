@@ -1,0 +1,28 @@
+{
+  "name": "@rednax/core",
+  "version": "0.0.1",
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": "https://github.com/acb122/-rednax-skyhook",
+  "dependencies": {
+    "dnd-core": "^9.0.0",
+    "tslib": "^1.9.0"
+  },
+  "peerDependencies": {
+    "@angular/core": ">= 10.0.0",
+    "rxjs": ">= 6.0.0",
+    "zone.js": ">= 0.8.26"
+  },
+  "license": "MIT",
+  "main": "bundles/rednax-core.umd.js",
+  "module": "fesm5/rednax-core.js",
+  "es2015": "fesm2015/rednax-core.js",
+  "esm5": "esm5/rednax-core.js",
+  "esm2015": "esm2015/rednax-core.js",
+  "fesm5": "fesm5/rednax-core.js",
+  "fesm2015": "fesm2015/rednax-core.js",
+  "typings": "rednax-core.d.ts",
+  "metadata": "rednax-core.metadata.json",
+  "sideEffects": false
+}

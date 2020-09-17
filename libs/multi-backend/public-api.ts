@@ -4,6 +4,7 @@
 export { TouchBackend } from 'react-dnd-touch-backend';
 export { HTML5Backend } from 'react-dnd-html5-backend';
 export {
+    MultiBackend,
     createTransition,
     HTML5DragTransition,
     TouchTransition,

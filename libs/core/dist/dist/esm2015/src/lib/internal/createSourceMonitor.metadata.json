@@ -1,0 +1,1 @@
+[{"__symbolic":"module","version":4,"metadata":{"createSourceMonitor":{"__symbolic":"function","parameters":["manager"],"value":{"__symbolic":"error","message":"Reference to non-exported class","line":8,"character":0,"context":{"className":"DragSourceMonitorClass"}}}}}]

@@ -47,7 +47,6 @@ documentation
 node_modules
 .sonar
 .cache
-dist
 .idea
 .ng_pkg_build
 coverage

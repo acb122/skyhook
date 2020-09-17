@@ -1,4 +1,4 @@
-declare module "dnd-multi-backend" {
+declare module 'dnd-multi-backend' {
     import { Backend } from 'dnd-core';
     import { BackendFactory } from 'dnd-core';
     import { DragDropManager } from 'dnd-core';
@@ -11,10 +11,10 @@ declare module "dnd-multi-backend" {
         transition: Transition;
         preview?: boolean;
     };
-    const MultiBackend: (
-        transition: { backends: BackendTransition[] }
-    ) => BackendFactory;
-    export default MultiBackend;
+    const MultiBackend: (transition: {
+        backends: BackendTransition[];
+    }) => BackendFactory;
+    export const MultiBackend;
     export const createTransition: (
         event: string,
         check: (event: Event) => boolean
@@ -23,4 +23,3 @@ declare module "dnd-multi-backend" {
     export const TouchTransition: Transition;
     export const MouseTransition: Transition;
 }
-
