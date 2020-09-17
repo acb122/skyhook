@@ -28,6 +28,15 @@
     "demo-e2e": {
       "tags": [],
       "implicitDependencies": ["demo"]
+    },
+    "core": {
+      "tags": []
+    },
+    "multi-backend": {
+      "tags": []
+    },
+    "sortable": {
+      "tags": []
     }
   }
 }

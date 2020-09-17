@@ -1,0 +1,22 @@
+{
+  "name": "@rednax/core",
+  "version": "0.0.1",
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": "https://github.com/acb122/-rednax-skyhook",
+  "dependencies": {
+    "tslib": "^1.9.0"
+  },
+  "peerDependencies": {
+    "@angular/core": ">= 10.0.0",
+    "rxjs": ">= 6.0.0",
+    "zone.js": ">= 0.8.26"
+  },
+  "scripts": {
+    "clean": "rimraf dist",
+    "lint": "tslint --config tslint.json src/**/*.ts",
+    "docs": "compodoc -p tsconfig.docs.json -c compodoc.json src"
+  },
+  "license": "MIT"
+}
