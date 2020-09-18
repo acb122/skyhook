@@ -24,9 +24,7 @@
         "pretty": true,
         "types": ["jest", "zone.js"],
         "paths": {
-            "@rednax/core": ["libs/core/src/index.ts"],
-            "@rednax/multi-backend": ["libs/multi-backend/src/index.ts"],
-            "@rednax/sortable": ["libs/sortable/src/index.ts"]
+            "@rednax-skyhook/*": ["packages/*/index.ts"]
         }
     },
     "exclude": ["tools", "**/node_modules", "**/dist", "node_modules"]

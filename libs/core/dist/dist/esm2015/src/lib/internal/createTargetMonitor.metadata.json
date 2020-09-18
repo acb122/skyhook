@@ -1,1 +1,0 @@
-[{"__symbolic":"module","version":4,"metadata":{"createTargetMonitor":{"__symbolic":"function","parameters":["manager"],"value":{"__symbolic":"error","message":"Reference to non-exported class","line":6,"character":0,"context":{"className":"DropTargetMonitorClass"}}}}}]

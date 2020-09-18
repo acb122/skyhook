@@ -11,7 +11,7 @@ module.exports = {
     preset: 'jest-preset-angular',
     setupFilesAfterEnv: ['<rootDir>/test/test-setup.ts'],
     moduleNameMapper: {
-        '@rednax/(.*)': '<rootDir>/libs/$1',
+        '@rednax-skyhook/(.*)': '<rootDir>/packages/$1',
         // https://react-dnd.github.io/react-dnd/docs/testing
         '^dnd-core$': 'dnd-core/dist/cjs',
         '^react-dnd$': 'react-dnd/dist/cjs',
@@ -26,9 +26,9 @@ module.exports = {
     modulePathIgnorePatterns: ['/node_modules/', '/dist/'],
     projects: ['<rootDir>'],
     collectCoverageFrom: [
-        'libs/core/*/src/**/*.ts',
-        'libs/multi-backend/*/src/**/*.ts',
-        'libs/sortable/*/src/**/*.ts',
+        'packages/core/*/src/**/*.ts',
+        'packages/multi-backend/*/src/**/*.ts',
+        'packages/sortable/*/src/**/*.ts',
     ],
     coveragePathIgnorePatterns: [
         '.*(spec|const|config|mock|module|public-api|index|mock|model|d).ts',
