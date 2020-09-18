@@ -136,7 +136,7 @@ const EXPORTS = [
 export class SkyhookDndModule {
     static forRoot(
         backendOrBackendFactory: BackendInput | BackendFactoryInput
-    ): ModuleWithProviders {
+    ): ModuleWithProviders<any> {
         return {
             ngModule: SkyhookDndModule,
             providers: [
