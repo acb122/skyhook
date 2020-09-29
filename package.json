@@ -54,7 +54,7 @@
         "postinstall": "yarn build-tools",
         "lint": "tslint packages/**/*.ts -t verbose",
         "aio": "compodoc -p ./tsconfig.json --output ./aio --hideGenerator --silent",
-        "publish": "cd ./packages/core/dist && npm version 0.0.5 && npm publish --access public && cd ../../sortable/dist && npm version 0.0.5 && npm publish --access public && cd ../../multi-backend/dist && npm version 0.0.5 && npm publish --access public "
+        "publish": "cd ./packages/core/dist && npm version 1.0.1 && npm publish --access public && cd ../../sortable/dist && npm version 1.0.1 && npm publish --access public && cd ../../multi-backend/dist && npm version 1.0.1 && npm publish --access public "
     },
     "workspaces": [
         "packages/*"

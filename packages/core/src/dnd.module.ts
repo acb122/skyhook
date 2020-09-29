@@ -22,23 +22,6 @@ import {
     DragDropManager,
 } from 'dnd-core';
 
-import { invariant } from './internal/invariant';
-
-/** @ignore */
-export function unpackBackendForEs5Users(backendOrModule: any) {
-    // Auto-detect ES6 default export for people still using ES5
-    let backend = backendOrModule;
-    if (typeof backend === 'object' && typeof backend.default === 'function') {
-        backend = backend.default;
-    }
-    invariant(
-        typeof backend === 'function',
-        'Expected the backend to be a function or an ES6 module exporting a default function. ' +
-            'Read more: http://react-dnd.github.io/react-dnd/docs-drag-drop-context.html'
-    );
-    return backend;
-}
-
 // TODO allow injecting window
 /** @ignore */
 // @dynamic
@@ -49,7 +32,6 @@ export function managerFactory(
     backendOptions?: any,
     debugMode?: boolean
 ): DragDropManager {
-    backendFactory = unpackBackendForEs5Users(backendFactory);
     return zone.runOutsideAngular(() =>
         createDragDropManager(
             backendFactory,
